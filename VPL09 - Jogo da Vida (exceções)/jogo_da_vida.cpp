@@ -6,14 +6,26 @@ JogoDaVida::JogoDaVida(int l, int c)
     : vivas_(l, std::vector<bool>(c, false)) {
 }
 
+void validarIndices(int i, int linhas, int j, int colunas){
+    bool indicesValidos = (i >= 0 && i < linhas) && (j >= 0 && j < colunas);
+    if(!indicesValidos) throw ExcecaoCelulaInvalida{i, j};
+}
+
 bool JogoDaVida::viva(int i, int j) {
+  validarIndices(i, linhas(), j, colunas());    
+ 
   return vivas_[i][j];
 }
 
 void JogoDaVida::Matar(int i, int j) {
+  validarIndices(i, linhas(), j, colunas());  
+ 
   vivas_[i][j] = false;
 }
+
 void JogoDaVida::Reviver(int i, int j) {
+  validarIndices(i, linhas(), j, colunas());    
+  
   vivas_[i][j] = true;
 }
 

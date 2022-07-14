@@ -1,3 +1,4 @@
+#include <cassert>
 #include "jogo_da_vida.h"
 
 // Inicializa vivas_ como um vetor com l elementos.
@@ -7,13 +8,23 @@ JogoDaVida::JogoDaVida(int l, int c)
 }
 
 bool JogoDaVida::viva(int i, int j) {
+  assert(i >= 0 && i < linhas());
+  assert(j >= 0 && j < colunas());
+  
   return vivas_[i][j];
 }
 
 void JogoDaVida::Matar(int i, int j) {
+  assert(i >= 0 && i < linhas());
+  assert(j >= 0 && j < colunas());
+ 
   vivas_[i][j] = false;
 }
+
 void JogoDaVida::Reviver(int i, int j) {
+  assert(i >= 0 && i < linhas());
+  assert(j >= 0 && j < colunas());
+  
   vivas_[i][j] = true;
 }
 
@@ -48,6 +59,8 @@ void JogoDaVida::ExecutarProximaIteracao() {
 }
 
 void JogoDaVida::Executar(int n) {
+  assert(n >= 0);
+  
   for (int i = 0; i < n; i++) {
     ExecutarProximaIteracao();
   }
